@@ -1,0 +1,5 @@
+#!/bin/sh
+if grep -e "^dtoverlay=spi-gpio-wlanthermo-overlay$" /boot/config.txt;
+then
+  echo "dtoverlay=spi-gpio-wlanthermo-overlay" >> /boot/config.txt
+fi

@@ -1,0 +1,17 @@
+Source: dto-spi-gpio-wlanthermo
+Section: main
+Priority: optional
+Maintainer: Bjoern Schrader <wlanthermo@bjoern-schrader.de>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+Homepage: https://wlanthermo.com/
+
+Package: spi-gpio-wlanthermo-overlay
+Architecture: arm
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Device tree overlay for spi-gpio
+ Adds a SPI bus with 3 spidev devices:
+ MOSI = 24
+ SCK = 18
+ MISO = 23
+ CS = 25, 8, 7

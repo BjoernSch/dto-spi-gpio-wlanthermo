@@ -1,0 +1,6 @@
+#!/bin/sh
+if -e "^dtoverlay=spi-gpio-wlanthermo-overlay$" /boot/config.txt;
+then
+  sed -i -e "s/^dtoverlay=spi-gpio-wlanthermo-overlay$//" /boot/config.txt
+fi
+

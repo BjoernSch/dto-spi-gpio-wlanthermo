@@ -1,0 +1,5 @@
+dto-spi-gpio-wlanthermo (0.1-1) jessie; urgency=low
+
+  * Initial release
+
+ -- Bjoern Schrader <wlanthermo@bjoern-schrader.de>  Thu, 31 Aug 2017 10:37:44 +0200
