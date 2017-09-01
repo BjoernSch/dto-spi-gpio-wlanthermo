@@ -7,7 +7,7 @@ Standards-Version: 3.9.5
 Homepage: https://wlanthermo.com/
 
 Package: spi-gpio-wlanthermo-overlay
-Architecture: arm
+Architecture: armhf
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Device tree overlay for spi-gpio
  Adds a SPI bus with 3 spidev devices:
