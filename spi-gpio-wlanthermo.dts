@@ -1,9 +1,9 @@
 /dts-v1/;
 /plugin/;
 /{
-    compatible = "brcm,bcm2708";
+    compatible = "brcm,bcm2835", "brcm,bcm2836", "brcm,bcm2708", "brcm,bcm2709";
     fragment@0 {
-        target = <&spi0>;
+        target = <&spi-gpio0>;
         #address-cells = <1>;
         #size-cells = <0>;
         __overlay__ {
@@ -11,9 +11,9 @@
             #address-cells = <1>;
             #size-cells = <0>;
             ranges;
-            gpio-mosi = <&gpio 24 0>;
-            gpio-sck = <&gpio 18 0>;
-            gpio-miso = <&gpio 23 >;
+            gpio-mosi = <&gpio 24 1>;
+            gpio-sck = <&gpio 18 1>;
+            gpio-miso = <&gpio 23 0>;
             cs-gpios = <&gpio 25 1>, <&gpio 8 1>, <&gpio 7 1>;
             num-chipselects = <3>;
             status = "ok";
@@ -34,4 +34,27 @@
             };
         };
     };
+    fragment@1 {
+        target = <&gpio>;
+        __overlay__ {
+            spi-gpio0_pins: spigpio_pins {
+                brcm,pins = <24 18 23 25 8 7>;
+                brcm,function = <1 1 0 1 1 1>; /* out out in out out out */
+            };
+        };
+    };
+    __overrides__ {
+        mosi = <&spi-gpio0>, "gpio-mosi:4",
+            <&spi-gpio0_pins>, "brcm,pins:0";
+        sck = <&spi-gpio0>, "gpio-sck:4",
+            <&spi-gpio0_pins>, "brcm,pins:4";
+        miso = <&spi-gpio0>, "gpio-miso:4",
+            <&spi-gpio0_pins>, "brcm,pins:8";
+        cs0 = <&spi-gpio0>, "cs-gpios:4",
+            <&spi-gpio0_pins>, "brcm,pins:12";
+        cs1 = <&spi-gpio0>, "cs-gpios:16",
+            <&spi-gpio0_pins>, "brcm,pins:16";
+        cs2 = <&spi-gpio0>, "cs-gpios:28",
+            <&spi-gpio0_pins>, "brcm,pins:20";   };
+
 };
